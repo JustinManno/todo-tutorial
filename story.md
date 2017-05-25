@@ -1,93 +1,47 @@
 ### Chapter 1: Setting Things Up
 
-We are going to create a new Rails app and add the Hyperloop, Hyperloop Console, Opal Hot Reloader, and Foreman gems.
+Running Hyperloop in Cloud9
 
-Once everything is installed we are going to create a very simple top level component named "Show".
+This is probably the easiest way to get started doing full stack development with Hyperloop if you don't already have Rails setup on your machine.
 
-This will take 4 commands, and 9 lines of code in various configuration files.
+Even if you are an experienced Rails developer there are some advantages to doing your first experiments on cloud 9:
 
-1. **Create a new rails app:**  
-`rails new todo-tutorial -d mysql`  
-The `-d mysql` asks rails to use `mysql` instead of `sqlite3`.  Sqlite will not be happy with the level of concurrent access from multiple processes that hyperloop will be using.  You can also use postgresql if you prefer.  
-`cd` into the todo-tutorial directory and run `bundle exec db:create` to initialize the database.
+You will get a consistent setup, which will avoid any possible configuration problems between linux/mac/windows OS versions, etc.
+Cloud9 supports co-development, so if you hit a snag it makes it even easier to get help from others.
+Your development server can be accessed by others through your unique cloud9 url so you can immediately show people on other machines the Hyperloop multi-client synchronization.
+Once you are comfortable with Hyperloop, transitioning your app back to your normal development environment is as easy as doing a git pull of your saved repo.
 
-+ **Add the hyperloop, hyper-console, opal_hot_reloader, and foreman gems:**  
-Edit the applications Gemfile, and
-  add `gem 'hyperloop'`;  
-  Add `gem 'hyper-console'` and `gem 'foreman'` to the development and test section of the gem file;  
-  Finally add `gem 'opal_hot_reloader'` to the development section of the gem file.  
-Do a `bundle install` to update your Gemfile,
-Then run `bundle exec rails g hyperloop:install`:  
-The installer will add  
-  + `//= require hyperloop-loader` to the app/assets/application.rb file;  
-  + A hyperloop.rb config file;  
-  + A policy directory and a default development access policy;
-  + And a hyperloop directory for your client and isomorphic code.  
-  <br>  
+Step 1: Get a Cloud9 account
 
-  Add the following line to the *end* of `app/assets/javascripts/application.js`  
-```javascript
-Opal.OpalHotReloader.$listen() // must be AFTER all requires
-```
-Now add the following line to the config block of `config/initializers/hyperloop.rb`  
-```ruby
-  config.import 'opal_hot_reloader' if Rails.env.development?
-```
-Add the following line to `config/initializers/assets.rb`
-```ruby
-  Rails.application.config.assets.precompile += %w( hyper-console-client.css hyper-console-client.min.js action_cable.js )
-```
-Finally add the foreman `Procfile` to the project root:
-```bash
-web:        bundle exec rails s
-hot-loader: bundle exec opal-hot-reloader -d app/hyperloop
-```
-Note: If you are using rails 5.1 you will also have to add `//= require 'jquery'` to `app/application/javascripts/application.js` because this is no longer required by default by rails 5.1
+Go to cloud 9's website and signup for an account (you can use your github account for signup.) You will have to supply a credit card, but to our knowledge Cloud9 can be trusted!
 
-+ Add the top level App component, and route:  
-Run `bundle exec rails g hyper:component 'Show'`.  This will create a basic component template and place it in `app/hyperloop/components/show.rb`.  
-<br>
-And add the following route to `routes.rb`
-```ruby
-# config/routes.rb
-...
-root 'hyperloop#show'
-```  
-*Note: Hyperloop comes with a hyperloop controller, that will respond to actions by displaying the component with the same name.  For more advanced usage you can always define your own controller and actions.*
+Step 2: Create Your New Workspace
 
-+ **Fire up the server and visit localhost.**
-<br>
-Run `foreman start -p 3000` which will execute each of the commands in the Procfile you created.  
-<br>
-It will take about 2-3 minutes on the *first* boot to precompile all the Hyperloop system assets.  Once this is done, you should see
-<div style="border:solid; margin-left: 10px; padding: 10px">
-  Show
-</div><br>
-displayed.<br>  
-*Congratulations!*  
-+ **Play with the Console:**  
-<br>
-You should also see a popup window open (you may have to enable popups for localhost).  This is your hyper-console debugger.
-<br>  
-You should be able to type ruby expressions like:  
-  + `12+12` -> 24
-  + `Show.instance` (which will return all the instances of the Show component currently mounted)
-  + `Element[Show.instance.dom_node].html` -> *"Show"*
-  + `Element[Show.instance.dom_node].html = 'Fred'` -> *"Fred"*  
-  <br>
+You will be invited to create your first workspace. Cloud9 gives you one private workspace and any number of public workspaces. We recommend you use the public option for your first experiments.
 
-+ **Watch For Hot Reload Code Changes:**
-<br>   
-Once everything is started try out the hot loader by making a change to the `app/hyperloop/components/show.rb` render method (right near the bottom):
-```ruby
-  def render
-    div do
-      "Show" <- change to something else like "SHOW OFF!"
-    end
-  end
-```
-You will see that as soon as you save the hot loader updates the code and browser window changes.
-Okay!  We are setup and ready to start building our application.
+Put git@github.com:ruby-hyperloop/rails-clone-and-go.git into the field titled titled Clone from Git or Mercurial URL (optional).
+
+Select the "Ruby on Rails" template type, and
+
+Create Your Workspace!
+
+Step 3: Run the Setup Script
+
+Once your workspace is created you should see the readme displayed. Just follow the directions and run
+
+./bin/setup to complete the initialization process.
+
+Step 4: Make sure you start MySQL
+
+run mysql-ctl start
+
+Step 5: Fire Up The Server
+
+run ./bin/hyperloop or use the cloud9 run command (along the nav top bar)
+
+Step 6: Visit the App
+
+You can see the App running right in the IDE window by clicking on preview in the top nav bar, or by pasting your unique cloud9 url into another browser window
 
 ### Chapter 2:  Hyperloop Models are Rails Models
 
