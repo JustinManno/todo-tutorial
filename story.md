@@ -78,7 +78,7 @@ This will make the model accessible on the clients, subject to any data access p
 *Note: The hyperloop installer adds a policy that gives full permission to all clients but only in development and test modes.  Have a look at `app/policies/application_policy` if you are interested.*
 + **Try It**
 <br>  
-Change your `Show` component's render method to
+* explain how- Change your `Show` component's render method to
 ```ruby
 class Show < Hyperloop::Component
     def render
