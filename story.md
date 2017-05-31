@@ -43,6 +43,7 @@ Step 6: Visit the App
 
 You can see the App running right in the IDE window by clicking on preview in the top nav bar, or by pasting your unique cloud9 url into another browser window
 
+WARNING STOP FOLLOWING OTHER INSTRUCTIONS WHEN YOU GET TO THE BOLDED PHRASE, "HYPERLOOP QUICK START"
 ### Chapter 2:  Hyperloop Models are Rails Models
 
 We are going to add our Todo Model, and discover that Hyperloop models are in fact Rails models.
