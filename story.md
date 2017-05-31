@@ -87,7 +87,7 @@ Now in another terminal window start a rails console and type:
 `Todo.create(title: 'my first todo')`  
 and you will see the count change to 1!
 <br>  
-Now in a Hyper-Console window type:  
+Now in a window type:  
 `Todo.create(title: 'my second todo')`  
 and you will see the count change to 2!
 <br>  
