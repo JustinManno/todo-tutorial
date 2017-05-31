@@ -55,32 +55,25 @@ We are going to add our Todo Model, and discover that Hyperloop models are in fa
 Okay lets see it in action:
 
 1. **Add the Todo Model:**  
-<br>
 In a new terminal window run:   
-<br>
-`bundle exec rails g model Todo title:string completed:boolean priority:integer`  
-<br>
-**VERY IMPORTANT!** Now look in the `db/migrate/ directory`, and edit the migration file you have just created.  Change the line creating the completed boolean field so that it looks like this:
+`bundle exec rails g model Todo title:string completed:boolean priority:integer`   
+**VERY IMPORTANT!** Now look in the `db/migrate/ directory`,"directorys are the green folders" and edit the migration file you have just created.  Change the line creating the completed boolean field so that it looks like this:    
 ```ruby
 ...
       t.boolean :completed, null: false, default: false
 ...
 ```
-For details on 'why' see [this blog post.](https://robots.thoughtbot.com/avoid-the-threestate-boolean-problem)  Basically this keeps completed as a true boolean, and will avoid having to check between `false` and `nil` later on.
-<br>  
+For details on 'why' see [this blog post.](https://robots.thoughtbot.com/avoid-the-threestate-boolean-problem)  Basically this keeps completed as a true boolean, and will avoid having to check between `false` and `nil` later on.  
 Now run `bundle exec rails db:migrate`
 
-+ **Make your Model Public:**
-<br>   
++ **Make your Model Public:**    
 *Move* `todo.rb` **and** `application_record.rb` from `app/models/` to `app/hyperloop/models`.  
 This will make the model accessible on the clients, subject to any data access policies.  
-<br>
 *Note: The hyperloop installer adds a policy that gives full permission to all clients but only in development and test modes.  Have a look at `app/policies/application_policy` if you are interested.*
-+ **Try It**
-<br>  
-* explain how- Change your `Show` component's render method to
++ **Try It**    
+* Change your `App` component's render method to
 ```ruby
-class Show < Hyperloop::Component
+class App < Hyperloop::Component
     def render
       div do
         "Number of Todos: #{Todo.count}"
