@@ -641,36 +641,7 @@ end
 ```
 ### Chapter 12: Other Features
 
-At this point we can add in a few missing features to the display.  
 
-+ **Toggle All**  
-First we will add a 'toggle-all' checkbox that will mark all the Todos and complete or incomplete.
-<br>
-Update the Index component so it looks like this:
-```ruby
-# app/hyperloop/components/index.rb
-class Index < Hyperloop::Router::Component
-
-  # for a number of reasons update_all is NOT available on the
-  # client, so we manually update each todo
-  def update_completed(completed)
-    Todo.each { |todo| todo.update(completed: completed) }
-  end
-
-  render(SECTION, class: :main) do
-    # add a checkbox that will call update_completed Whenever
-    # it changes
-    INPUT(class: 'toggle-all', type: :checkbox)
-    .on(:change) { |e| update_completed(e.target.checked) }
-
-    UL(class: 'todo-list') do
-      Todo.send(match.params[:scope]).each do |todo|
-        TodoItem(todo: todo)
-      end
-    end
-  end
-end
-```
 + **Show How Many Items Left In Footer**
 This is just a span that we add before the link tags list in the Footer component:
 ```ruby
