@@ -639,7 +639,7 @@ class EditItem < Hyperloop::Component
   end
 end
 ```
-### Chapter 11: Other Features
+### Chapter 12: Other Features
 
 At this point we can add in a few missing features to the display.  
 
@@ -715,10 +715,10 @@ end
 ```
 
 
-Chapter 11:
+Chapter 13:
 
 sample specs
 
-Chapter 12:
+Chapter 14:
 
 Conclusion
