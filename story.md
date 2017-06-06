@@ -679,10 +679,4 @@ end
 ```
 
 
-Chapter 13:
-
-sample specs
-
-Chapter 14:
-
-Conclusion
+Congratulations! you have completed the tutorial.
