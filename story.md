@@ -1,8 +1,13 @@
 General troubleshooting
+
 1: wait. programs may take a long time to load
+
 2: make sure to save after every instruction so that you can backtrack
+
 3: must run ./bin/hyperloop to restart srver if you close out of it
+
 4: app must be changed to show in most codes. formating issues prevent me from doing this myself.
+
 ### Chapter 1: Setting Things Up
 
 Running Hyperloop in Cloud9
@@ -18,7 +23,11 @@ Once you are comfortable with Hyperloop, transitioning your app back to your nor
 
 Step 1: Get a Cloud9 account
 
-Go to cloud 9's website:  https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwi-1o7vpqnUAhVFwiYKHa_IAZYQFggmMAA&url=https%3A%2F%2Fc9.io%2F&usg=AFQjCNHeXGx8w99yPGVSzgrH-Wa2kB_mQw&sig2=fBVKBbZ90G8VhrFRJQc70gand signup for an account (you can use your github account for signup.) You will have to supply a credit card, but to our knowledge Cloud9 can be trusted!
+Go to cloud 9's website: 
+
+https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwi-1o7vpqnUAhVFwiYKHa_IAZYQFggmMAA&url=https%3A%2F%2Fc9.io%2F&usg=AFQjCNHeXGx8w99yPGVSzgrH-Wa2kB_mQw&sig2=fBVKBbZ90G8VhrFRJQc70g
+
+and signup for an account (you can use your github account for signup.) You will have to supply a credit card, but to our knowledge Cloud9 can be trusted!
 
 "make sure to Connect your Cloud9 account to your github account by going to settings (upper right corner) and clicking the connected services tab, click the connect button next to github and allow it access
 
