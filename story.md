@@ -88,8 +88,7 @@ This will make the model accessible on the clients, subject to any data access p
 * Change your `App` component's render method to
 ```ruby
 class App < Hyperloop::Component
-    def render
-      div do
+    render(DIV) do
         "Number of Todos: #{Todo.count}"
       end
     end
