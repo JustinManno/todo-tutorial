@@ -35,7 +35,7 @@ Step 2: Create Your New Workspace
 
 You will be invited to create your first workspace. Cloud9 gives you one private workspace and any number of public workspaces. We recommend you use the public option for your first experiments.
 
-Put git@github.com:ruby-hyperloop/rails-clone-and-go.git into the field titled titled Clone from Git or Mercurial URL (optional).
+Put "git@github.com:ruby-hyperloop/rails-clone-and-go.git" into the field titled titled Clone from Git or Mercurial URL (optional).
 
 Select the "Ruby on Rails" template type, and
 
