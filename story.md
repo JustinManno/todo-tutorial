@@ -650,7 +650,7 @@ This is just a span that we add before the link tags list in the Footer componen
 EditItem should display a meaningful placeholder hint if the title is blank:
 ```ruby
   ...
-  INPUT(..., placeholder: "what is left todo?")
+  INPUT(class: params.className, value: params.todo.title, placeholder: "What is left to do today?")
   ...
 ```
 + **Don't Show the Footer If There are No Todos**
