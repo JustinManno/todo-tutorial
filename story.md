@@ -521,7 +521,7 @@ We don't care if the user cancels the edit, so we simply don't provide a `:cance
 We are just going to steal the style sheet from the benchmark Todo app, and add it to our assets.
 
 **GO GRAB THE FILE** at https://github.com/JustinManno/todo-tutorial/blob/hyperloop/app/assets/stylesheets/todo.css
-you will need to make a file in app/stylesheets called, todo.css. paste the file there.
+you will need to make a file in app/stylesheets called, todo.css. paste the file there. Make sure to make it a css file.
 
 You will have to refresh the page after changing the style sheet (i think???)
 
