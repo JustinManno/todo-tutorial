@@ -1,3 +1,8 @@
+General troubleshooting
+1: wait. programs may take a long time to load
+2: make sure to save after every instruction so that you can backtrack
+3: must run ./bin/hyperloop to restart srver if you close out of it
+4: app must be changed to show in most codes. formating issues prevent me from doing this myself.
 ### Chapter 1: Setting Things Up
 
 Running Hyperloop in Cloud9
@@ -13,7 +18,9 @@ Once you are comfortable with Hyperloop, transitioning your app back to your nor
 
 Step 1: Get a Cloud9 account
 
-Go to cloud 9's website and signup for an account (you can use your github account for signup.) You will have to supply a credit card, but to our knowledge Cloud9 can be trusted!
+Go to cloud 9's website:  https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwi-1o7vpqnUAhVFwiYKHa_IAZYQFggmMAA&url=https%3A%2F%2Fc9.io%2F&usg=AFQjCNHeXGx8w99yPGVSzgrH-Wa2kB_mQw&sig2=fBVKBbZ90G8VhrFRJQc70gand signup for an account (you can use your github account for signup.) You will have to supply a credit card, but to our knowledge Cloud9 can be trusted!
+
+"make sure to Connect your Cloud9 account to your github account by going to settings (upper right corner) and clicking the connected services tab, click the connect button next to github and allow it access
 
 Step 2: Create Your New Workspace
 
@@ -31,17 +38,15 @@ Once your workspace is created you should see the readme displayed. Just follow 
 
 ./bin/setup to complete the initialization process.
 
-Step 4: Make sure you start MySQL
-
-run mysql-ctl start
-
-Step 5: Fire Up The Server
+Step 4: Fire Up The Server
 
 run ./bin/hyperloop or use the cloud9 run command (along the nav top bar)
 
-Step 6: Visit the App
+Step 5: Visit the App
 
 You can see the App running right in the IDE window by clicking on preview in the top nav bar, or by pasting your unique cloud9 url into another browser window
+
+Be advised that load times may very according to your machine. The program is not broken if load times get longer.
 
 WARNING STOP FOLLOWING OTHER INSTRUCTIONS WHEN YOU GET TO THE BOLDED PHRASE, "HYPERLOOP QUICK START"
 ### Chapter 2:  Hyperloop Models are Rails Models
@@ -288,18 +293,6 @@ end
 Now we can say `Todo.all`, `Todo.completed`, and `Todo.active`, and get the desired subset of Todos.  You might want to try it now in the hyper-console or the rails console.  *Note: if you use the rails console you will have to do a `reload!` to load the changes to the model.*
 
 Having the application display different data (or whole different components) based on the URL is called routing.  Rails also has routing, but in our case we are letting our Hyperloop application take care of routing, so the first step is to tell rails to simply accept any url as valid, and pass it to our `Show` component.  
-
-Go to the `config/routes.rb` file and remove
-```ruby
-  root 'hyperloop#show'
-```
-and replace it with:
-```ruby
-get '/(*other)', to: 'hyperloop#show'
-```
-In other words route any HTTP GET request that looks like `/` or `/xxx` to the `Show` component.  
-
-Now try changing the URL to `/all` or `/completed`.  Of course nothing different happens, but the page will load.
 
 So the next step is have our top level `Show` component *route* the URL, and the `Index` component react to changes in the URL.  Change `Show` to look like this:
 ```ruby
