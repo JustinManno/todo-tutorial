@@ -1,12 +1,11 @@
-General troubleshooting
+### General troubleshooting
 
-1: wait. programs may take a long time to load
+1: Wait. programs may take a long time to load
 
-2: make sure to save after every instruction so that you can backtrack
+2: Make sure to save after every instruction so that you can backtrack
 
-3: must run ./bin/hyperloop to restart srver if you close out of it
+3: Must run ./bin/hyperloop to restart server if you close out of it
 
-4: app must be changed to show in most codes. formating issues prevent me from doing this myself.
 
 ### Chapter 1: Setting Things Up
 
@@ -21,17 +20,16 @@ Cloud9 supports co-development, so if you hit a snag it makes it even easier to 
 Your development server can be accessed by others through your unique cloud9 url so you can immediately show people on other machines the Hyperloop multi-client synchronization.
 Once you are comfortable with Hyperloop, transitioning your app back to your normal development environment is as easy as doing a git pull of your saved repo.
 
-Step 1: Get a Cloud9 account
+**Step 1: Get a Cloud9 account**
 
-Go to cloud 9's website: 
+Go to cloud 9's [website](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwi-1o7vpqnUAhVFwiYKHa_IAZYQFggmMAA&url=https%3A%2F%2Fc9.io%2F&usg=AFQjCNHeXGx8w99yPGVSzgrH-Wa2kB_mQw&sig2=fBVKBbZ90G8VhrFRJQc70g)
 
-https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwi-1o7vpqnUAhVFwiYKHa_IAZYQFggmMAA&url=https%3A%2F%2Fc9.io%2F&usg=AFQjCNHeXGx8w99yPGVSzgrH-Wa2kB_mQw&sig2=fBVKBbZ90G8VhrFRJQc70g
 
 and signup for an account (you can use your github account for signup.) You will have to supply a credit card, but to our knowledge Cloud9 can be trusted!
 
-"make sure to Connect your Cloud9 account to your github account by going to settings (upper right corner) and clicking the connected services tab, click the connect button next to github and allow it access
+make sure to Connect your Cloud9 account to your github account by going to settings (upper right corner) and clicking the connected services tab, click the connect button next to github and allow it access
 
-Step 2: Create Your New Workspace
+**Step 2: Create Your New Workspace**
 
 You will be invited to create your first workspace. Cloud9 gives you one private workspace and any number of public workspaces. We recommend you use the public option for your first experiments.
 
@@ -41,21 +39,23 @@ Select the "Ruby on Rails" template type, and
 
 Create Your Workspace!
 
-Step 3: Run the Setup Script
+**Step 3: Run the Setup Script**
 
 Once your workspace is created you should see the readme displayed. Just follow the directions and run
 
 ./bin/setup to complete the initialization process.
 
-Step 4: Fire Up The Server
+**Step 4: Fire Up The Server**
 
 run ./bin/hyperloop or use the cloud9 run command (along the nav top bar)
 
-Step 5: Visit the App
+**Step 5: Visit the App**
 
-You can see the App running right in the IDE window by clicking on preview in the top nav bar, or by pasting your unique cloud9 url into another browser window
+You can see the App running right in the IDE window by clicking on preview in the top nav bar, or by pasting your unique cloud9 url into another browser window. If you've used the clone from github, you should see a display of the current time
 
 Be advised that load times may very according to your machine. The program is not broken if load times get longer.
+
+To see if you have setup correctly, naviagate to /app/hyperloop/components/app.rb. In this file, you should see some code printing out to the screen. Try changing the string that is being printed and save then refresh you're preview to see if it changes in the preview!
 
 WARNING STOP FOLLOWING OTHER INSTRUCTIONS WHEN YOU GET TO THE BOLDED PHRASE, "HYPERLOOP QUICK START"
 ### Chapter 2:  Hyperloop Models are Rails Models
@@ -69,7 +69,7 @@ We are going to add our Todo Model, and discover that Hyperloop models are in fa
 Okay lets see it in action:
 
 1. **Add the Todo Model:**  
-In a new terminal window run:   
+In a new terminal window (click on circular green plus sign about current terminals) run:   
 `bundle exec rails g model Todo title:string completed:boolean priority:integer`   
 **VERY IMPORTANT!** Now look in the `db/migrate/ directory`,"directorys are the green folders" and edit the migration file you have just created.  Change the line creating the completed boolean field so that it looks like this:    
 ```ruby
@@ -94,9 +94,11 @@ class App < Hyperloop::Component
     end
 end
 ```
-Reload the page you will see *Number of Todos: 0* displayed.  
+Reload the page you will see *Number of Todos: 0* displayed.
+*Note: If this does not work, try adding the line `require_relative ‘application_record'` to the top of todo.rb*
+
 <br>
-Now in another terminal window start a rails console and type:  
+Now in another terminal window start a rails console (enter `rails c` into terminal) and type:  
 `Todo.create(title: 'my first todo')`  
 and you will see the count change to 1!
 <br>  
@@ -114,10 +116,10 @@ and you will get back *"my second todo"*
 
 Now that we have all of our pieces in place, lets build our application.
 
-Replace the entire contents of `show.rb` with:
+Replace the entire contents of `app.rb` with:
 ```ruby
 # app/hyperloop/components/show.rb
-class Show < Hyperloop::Component
+class App < Hyperloop::Component
   render(DIV) do
     Header()
     Index()
@@ -125,7 +127,7 @@ class Show < Hyperloop::Component
   end
 end
 ```
-and the stub out the three sub components:
+and the stub out the three sub components by adding three new ruby files to the app/hyperloop/components folder:
 ```ruby
 # app/hyperloop/components/header.rb
 class Header < Hyperloop::Component
@@ -151,13 +153,11 @@ class Footer < Hyperloop::Component
 end
 ```
 Once you add the Footer component you should see:
-<div style="border:solid; margin-left: 10px; padding: 10px">
-  <div>Header will go here</div>
-  <div>list of Todos will go here</div>
-  <div>Footer will go here</div>
-</div>
+  
+Header will go here  
+list of Todos will go here  
+Footer will go here  
 
-<br>
 In your browser.
 ### Chapter 4: Listing the Todos, HyperReact Params, and Prerendering
 
@@ -300,12 +300,12 @@ end
 ```
 Now we can say `Todo.all`, `Todo.completed`, and `Todo.active`, and get the desired subset of Todos.  You might want to try it now in the hyper-console or the rails console.  *Note: if you use the rails console you will have to do a `reload!` to load the changes to the model.*
 
-Having the application display different data (or whole different components) based on the URL is called routing.  Rails also has routing, but in our case we are letting our Hyperloop application take care of routing, so the first step is to tell rails to simply accept any url as valid, and pass it to our `Show` component.  
+Having the application display different data (or whole different components) based on the URL is called routing.  Rails also has routing, but in our case we are letting our Hyperloop application take care of routing, so the first step is to tell rails to simply accept any url as valid, and pass it to our `App` component.  
 
-So the next step is have our top level `Show` component *route* the URL, and the `Index` component react to changes in the URL.  Change `Show` to look like this:
+So the next step is have our top level `App` component *route* the URL, and the `Index` component react to changes in the URL.  Change `App` to look like this:
 ```ruby
 # app/hyperloop/components/show.rb
-class Show < Hyperloop::Router
+class App < Hyperloop::Router
   history :browser
   route do
     DIV do
@@ -330,7 +330,7 @@ end
 Note that because we have changed the class of these components the hot reloader will break, and you will have to refresh the page.
 
 Lets walk through the changes:
-+ `Show` now inherits from `Hyperloop::Router` which is a subclass of `Hyperloop::Component` with *router* capabilities added.
++ `App` now inherits from `Hyperloop::Router` which is a subclass of `Hyperloop::Component` with *router* capabilities added.
 + The `history` macro tells the router how to track the history (back/forward buttons).  
 The `:browser` history tracks the history invisibly in the html5 browser history.
 The other common option is the `:hash` history which tracks the history in the url hash.
@@ -529,16 +529,16 @@ We don't care if the user cancels the edit, so we simply don't provide a `:cance
 We are just going to steal the style sheet from the benchmark Todo app, and add it to our assets.
 
 **GO GRAB THE FILE** at https://github.com/JustinManno/todo-tutorial/blob/hyperloop/app/assets/stylesheets/todo.css
-you will need to make a file in app/stylesheets called, todo.css. paste the file there. Make sure to make it a css file.
+you will need to make a file in app/assests/stylesheets called, todo.css. paste the file there. Make sure to make it a css file.
 
-You will have to refresh the page after changing the style sheet (i think???)
+You will have to refresh the page after changing the style sheet
 
 Now its a matter of updating the classes (which are passed via the class parameter) and also changing some of the DIVs to other HTML tags.
 
-Lets do the `Show` component.  With styling it will look like this:
+Lets do the `App` component.  With styling it will look like this:
 ```ruby
 # app/hyperloop/components/show.rb
-class Show < Hyperloop::Router
+class App < Hyperloop::Router
   history :browser
   route do
     SECTION(class: 'todo-app') do # change to SECTION and add class
@@ -662,7 +662,7 @@ EditItem should display a meaningful placeholder hint if the title is blank:
   ...
 ```
 + **Don't Show the Footer If There are No Todos**
-In the `Show` component add a guard so that we won't show the Footer if there are no Todos:
+In the `App` component add a guard so that we won't show the Footer if there are no Todos:
 ```ruby
   ...
       Footer() unless Todo.count.zero?
