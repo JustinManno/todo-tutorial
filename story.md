@@ -158,7 +158,6 @@ Header will go here
 list of Todos will go here  
 Footer will go here  
 
-In your browser.
 ### Chapter 4: Listing the Todos, HyperReact Params, and Prerendering
 
 To display each Todo we will create a TodoItem component that takes a parameter:
