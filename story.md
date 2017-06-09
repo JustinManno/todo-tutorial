@@ -671,7 +671,7 @@ In the `App` component add a guard so that we won't show the Footer if there are
 The home path ('/') should redirect to the '/all' path:
 ```ruby
 # app/hyperloop/components/show.rb
-class Show < Hyperloop::Router
+class App < Hyperloop::Router
   history :browser
   route do
     SECTION(class: 'todo-app') do
