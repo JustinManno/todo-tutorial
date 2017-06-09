@@ -6,6 +6,8 @@
 
 3: Must run ./bin/hyperloop to restart server if you close out of it
 
+4: If you don't like the bright pink background, you can change it to white by going to app/assests/stylesheets/hyperloop-clone-and_go and changing the background color to #ffffff
+
 
 ### Chapter 1: Setting Things Up
 
@@ -33,7 +35,7 @@ make sure to Connect your Cloud9 account to your github account by going to sett
 
 You will be invited to create your first workspace. Cloud9 gives you one private workspace and any number of public workspaces. We recommend you use the public option for your first experiments.
 
-Put "git@github.com:ruby-hyperloop/rails-clone-and-go.git" into the field titled titled Clone from Git or Mercurial URL (optional).
+Put `git@github.com:ruby-hyperloop/rails-clone-and-go.git` into the field titled titled Clone from Git or Mercurial URL (optional).
 
 Select the "Ruby on Rails" template type, and
 
@@ -43,11 +45,11 @@ Create Your Workspace!
 
 Once your workspace is created you should see the readme displayed. Just follow the directions and run
 
-./bin/setup to complete the initialization process.
+`bin/setup` to complete the initialization process.
 
 **Step 4: Fire Up The Server**
 
-run ./bin/hyperloop or use the cloud9 run command (along the nav top bar)
+run `bin/hyperloop` or use the cloud9 run command (along the nav top bar)
 
 **Step 5: Visit the App**
 
@@ -71,13 +73,14 @@ Okay lets see it in action:
 1. **Add the Todo Model:**  
 In a new terminal window (click on circular green plus sign about current terminals) run:   
 `bundle exec rails g model Todo title:string completed:boolean priority:integer`   
-**VERY IMPORTANT!** Now look in the `db/migrate/ directory`,"directorys are the green folders" and edit the migration file you have just created.  Change the line creating the completed boolean field so that it looks like this:    
+**VERY IMPORTANT!** Now look in the db/migrate/ directory, and edit the migration file you have just created. It should be titled with a long string of numbers then "create_todos" at the end. Change the line creating the completed boolean field so that it looks like this:    
 ```ruby
 ...
       t.boolean :completed, null: false, default: false
 ...
 ```
 For details on 'why' see [this blog post.](https://robots.thoughtbot.com/avoid-the-threestate-boolean-problem)  Basically this keeps completed as a true boolean, and will avoid having to check between `false` and `nil` later on.  
+
 Now run `bundle exec rails db:migrate`
 
 + **Make your Model Public:**    
@@ -99,18 +102,18 @@ Reload the page you will see *Number of Todos: 0* displayed.
 
 <br>
 Now in another terminal window start a rails console (enter `rails c` into terminal) and type:  
-`Todo.create(title: 'my first todo')`  
+Todo.create(title: 'my first todo')  
 and you will see the count change to 1!
 <br>  
 Now in a window type:  
-`Todo.create(title: 'my second todo')`  
+Todo.create(title: 'my second todo') 
 and you will see the count change to 2!
 <br>  
 Go back to your rails console and type:
-`Todo.last.title`  
-and you will get back *"my second todo"*  
+Todo.last.title  
+and you will get back "my second todo" 
 <br>
-**Are we having fun yet?**  I hope so!  As you can see Hyperloop is synchronizing the Todo model between the client and server.  As the *state* of the database changes HyperReact buzzes around updating whatever parts of the DOM were dependent on that data (in this case the count of Todos).
+Are we having fun yet?  I hope so!  As you can see Hyperloop is synchronizing the Todo model between the client and server.  As the state of the database changes HyperReact buzzes around updating whatever parts of the DOM were dependent on that data (in this case the count of Todos).
 
 ### Chapter 3: Creating the Top Level App Structure
 
@@ -192,6 +195,7 @@ Now you will see something like
 </div>
 
 <br>
+
 
 As you can see components can take parameters (or props in react.js terminology.)
 
@@ -670,8 +674,8 @@ In the `App` component add a guard so that we won't show the Footer if there are
 + **Add a Root Route**
 The home path ('/') should redirect to the '/all' path:
 ```ruby
-# app/hyperloop/components/show.rb
-class Show < Hyperloop::Router
+# app/hyperloop/components/app.rb
+class App < Hyperloop::Router
   history :browser
   route do
     SECTION(class: 'todo-app') do
